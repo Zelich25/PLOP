@@ -11,6 +11,8 @@ namespace baza
         string imie, nazwisko,pozycja;
         int gole, asysty,odbiory, obrony, minuty;
 
+        //hahah panowie bawimy sie gitem
+
         public string Imie
         {
             get
