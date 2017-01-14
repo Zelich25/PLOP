@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using baza;
-
+//sprawdzamy gita czy updatuje folderki
 namespace WpfApplication1
 {
     /// <summary>
@@ -37,13 +37,18 @@ namespace WpfApplication1
         {
             zawodnik zaw = listBox.SelectedItem as zawodnik;
             int index = listBox.SelectedIndex;
-            if (zaw != null)
-            {
-                Statystyki okno = new Statystyki(zaw);
-                okno.ShowDialog();
-                sklad[index] = zaw;
-                z.lista[index] = zaw;
-            }
+            try { 
+                    Statystyki okno = new Statystyki(zaw);
+                    okno.ShowDialog();
+                    sklad[index] = zaw;
+                    z.lista[index] = zaw;
+                }
+                catch(Exception Ex)
+                {
+                MessageBox.Show("Musisz zaznaczyć piłkarza!");
+                }
+            
+            
         }
 
         private void button_Dodaj_Click(object sender, RoutedEventArgs e)
@@ -54,17 +59,36 @@ namespace WpfApplication1
             sklad.Add(zaw);
             z.lista.Add(zaw);
             StreamWriter SW;
-            SW = File.AppendText(@"C:\Users\pitek\Documents\Visual Studio 2015\Projects\baza\baza\bin\Debug\zawodnicy.txt");
-            SW.Write(zaw.Imie+" "+zaw.Nazwisko+" "+zaw.Pozycja+" 0 0 0");
-            SW.WriteLine();
+            SW = File.AppendText(@"C:\Users\ROBSSSON\Desktop\PLOP\baza\bin\Debug\zawodnicy.txt");
+            SW.WriteLine(zaw.Imie+" "+zaw.Nazwisko+" "+zaw.Pozycja+" 0 0 0 0 0");
             SW.Close();
         }
 
         private void button_Usun_Click(object sender, RoutedEventArgs e)
         {
             int zaznaczony = listBox.SelectedIndex;
-            sklad.RemoveAt(zaznaczony);
-            z.lista.RemoveAt(zaznaczony);
+
+            //Usuwamy zawodnika, jeżeli nie zaznaczamy złapie nam wyjątek i wyświetli wiadomość nakazującą użytkownikowi zaznaczyć piłkarza do usunięcia
+
+            try
+            {
+                sklad.RemoveAt(zaznaczony);
+                z.lista.RemoveAt(zaznaczony);
+                FileStream plik = new FileStream(@"C:\Users\ROBSSSON\Desktop\PLOP\baza\bin\Debug\zawodnicy.txt", FileMode.Create);
+                StreamWriter SW = new StreamWriter(plik);
+
+                foreach (zawodnik zaw in z.lista)
+                {
+                    SW.WriteLine(zaw.Imie+" "+zaw.Nazwisko+" "+zaw.Pozycja+" "+zaw.Minuty+" "+zaw.Gole+" "+zaw.Asysty+ " "+zaw.Odbiory+" "+zaw.Obrony);
+                }
+                SW.Close();
+            }
+
+            catch (Exception Ex)
+            {
+                MessageBox.Show("Musisz zaznaczyć piłkarza!");
+
+            }
             //FileStream plik = new FileStream(@"C:\Users\pitek\Documents\Visual Studio 2015\Projects\baza\baza\bin\Debug\zawodnicy2.txt", FileMode.CreateNew);
             //StreamWriter f = new StreamWriter(plik);
             //foreach(zawodnik i in z.lista)
