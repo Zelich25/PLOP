@@ -38,7 +38,7 @@ namespace baza
         {
             ListaZawodnikow lista = new ListaZawodnikow();
             List<List<string>> punkty = new List<List<string>>();
-            string[] linie = File.ReadAllLines(@"C:\Users\Kamil\Desktop\PLOP\baza\bin\Debug\zawodnicy.txt");
+            string[] linie = File.ReadAllLines(@"C:\Users\Tomek\Desktop\PLOP\baza\bin\Debug\zawodnicy.txt");
 
             zawodnik[] zw = new zawodnik[linie.Length];
             for (int i = 0; i < linie.Length ; ++i)

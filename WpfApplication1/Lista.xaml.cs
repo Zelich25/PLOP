@@ -54,7 +54,7 @@ namespace WpfApplication1
             sklad.Add(zaw);
             z.lista.Add(zaw);
             StreamWriter SW;
-            SW = File.AppendText(@"C:\Users\pitek\Documents\Visual Studio 2015\Projects\baza\baza\bin\Debug\zawodnicy.txt");
+            SW = File.AppendText(@"C:\Users\Tomek\Desktop\PLOP\baza\bin\Debug\zawodnicy.txt");
             SW.Write(zaw.Imie+" "+zaw.Nazwisko+" "+zaw.Pozycja+" 0 0 0");
             SW.WriteLine();
             SW.Close();
@@ -65,6 +65,7 @@ namespace WpfApplication1
             int zaznaczony = listBox.SelectedIndex;
             sklad.RemoveAt(zaznaczony);
             z.lista.RemoveAt(zaznaczony);
+
             //FileStream plik = new FileStream(@"C:\Users\pitek\Documents\Visual Studio 2015\Projects\baza\baza\bin\Debug\zawodnicy2.txt", FileMode.CreateNew);
             //StreamWriter f = new StreamWriter(plik);
             //foreach(zawodnik i in z.lista)
