@@ -26,7 +26,7 @@ namespace WpfApplication1
             InitializeComponent();
             ListaZawodnikow ostatni = new ListaZawodnikow();
             List<List<string>> punkty = new List<List<string>>();
-            string[] linie = File.ReadAllLines(@"C:\Users\Kamil\Desktop\baza\baza\baza\bin\Debug\sklad.txt");
+            string[] linie = File.ReadAllLines(@"C:\Users\Tomek\Desktop\PLOP\baza\bin\Debug\sklad.txt");
 
             zawodnik[] zw = new zawodnik[linie.Length];
             for (int i = 0; i < linie.Length; ++i)
