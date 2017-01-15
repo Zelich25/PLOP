@@ -54,7 +54,7 @@ namespace WpfApplication1
             sklad.Add(zaw);
             z.lista.Add(zaw);
             StreamWriter SW;
-            SW = File.AppendText(@"C:\Users\Tomek\Desktop\PLOP\baza\bin\Debug\zawodnicy.txt");
+            SW = File.AppendText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\baza\bin\Debug\zawodnicy.txt"));
             SW.Write(zaw.Imie+" "+zaw.Nazwisko+" "+zaw.Pozycja+" 0 0 0");
             SW.WriteLine();
             SW.Close();
